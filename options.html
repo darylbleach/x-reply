@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>X Reply Coach – Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <img src="icons/icon48.png" alt="" width="28" height="28" />
+      <div><div class="brand-name">X Reply Coach</div><div class="brand-sub">v<span id="ver"></span></div></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-item active" data-tab="provider"><span class="nav-ico">⚡</span> AI provider <span class="nav-badge" id="badge-provider"></span></button>
+      <button class="nav-item" data-tab="voice"><span class="nav-ico">🎙</span> Your voice <span class="nav-badge" id="badge-voice"></span></button>
+      <button class="nav-item" data-tab="suggestions"><span class="nav-ico">✨</span> Suggestions</button>
+      <button class="nav-item" data-tab="help"><span class="nav-ico">❔</span> How it works</button>
+    </nav>
+    <div class="side-foot">
+      <div class="readiness" id="readiness"></div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <!-- ================= PROVIDER ================= -->
+    <section class="tab active" data-tab="provider">
+      <header class="page-head">
+        <h1>AI provider</h1>
+        <p>Pick who writes your suggestions. Keys stay in this browser and are only sent to the provider you choose.</p>
+      </header>
+
+      <div class="provider-grid" id="providers">
+        <label class="pcard" data-p="claude">
+          <input type="radio" name="provider" value="claude" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">Claude</span><span class="pby">Anthropic</span><span class="pstate" data-state="claude"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="claude" placeholder="sk-ant-…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="claude"></select><button type="button" class="mini refresh" data-refresh="claude" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="claude"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+
+        <label class="pcard" data-p="openai">
+          <input type="radio" name="provider" value="openai" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">ChatGPT</span><span class="pby">OpenAI</span><span class="pstate" data-state="openai"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="openai" placeholder="sk-…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="openai"></select><button type="button" class="mini refresh" data-refresh="openai" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="openai"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+
+        <label class="pcard" data-p="gemini">
+          <input type="radio" name="provider" value="gemini" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">Gemini</span><span class="pby">Google</span><span class="pstate" data-state="gemini"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="gemini" placeholder="AIza…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="gemini"></select><button type="button" class="mini refresh" data-refresh="gemini" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="gemini"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+
+        <label class="pcard" data-p="grok">
+          <input type="radio" name="provider" value="grok" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">Grok</span><span class="pby">xAI</span><span class="pstate" data-state="grok"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="grok" placeholder="xai-…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="grok"></select><button type="button" class="mini refresh" data-refresh="grok" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="grok"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://console.x.ai/" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+      </div>
+
+      <div class="card test-card">
+        <div>
+          <div class="card-title">Test the connection</div>
+          <div class="muted">Saves your settings, then asks the selected model for one sample reply.</div>
+        </div>
+        <button type="button" class="btn ghost" id="test">Run test</button>
+      </div>
+      <div id="testResult" class="test-result" hidden></div>
+    </section>
+
+    <!-- ================= VOICE ================= -->
+    <section class="tab" data-tab="voice">
+      <header class="page-head">
+        <h1>Your voice</h1>
+        <p>The more of your real posts and replies it has seen, the more the suggestions sound like you.</p>
+      </header>
+
+      <div class="card">
+        <div class="card-title">1 · Your account</div>
+        <div class="grid2">
+          <div class="field">
+            <span class="flabel">X handle</span>
+            <div class="prefixwrap"><span class="prefix">@</span><input type="text" id="handle" placeholder="yourhandle" autocomplete="off" /></div>
+            <div class="hint">Used to find your own posts and to ignore everyone else's.</div>
+          </div>
+          <div class="field">
+            <span class="flabel">How far back to learn</span>
+            <select id="lookback">
+              <option value="all">Everything</option>
+              <option value="3">Last 3 months</option>
+              <option value="6">Last 6 months</option>
+              <option value="9">Last 9 months</option>
+              <option value="12">Last 12 months</option>
+              <option value="date">Stop at a date…</option>
+            </select>
+            <input type="date" id="lookbackDate" hidden />
+            <div class="hint">Learning stops once it reaches posts older than this.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">2 · Learn from X</div>
+        <div class="learn-row">
+          <div class="stat-grid" id="stats">
+            <div class="stat"><div class="stat-n" id="st-total">0</div><div class="stat-l">samples</div></div>
+            <div class="stat"><div class="stat-n" id="st-replies">0</div><div class="stat-l">replies</div></div>
+            <div class="stat"><div class="stat-n" id="st-posts">0</div><div class="stat-l">posts</div></div>
+            <div class="stat"><div class="stat-n" id="st-range">–</div><div class="stat-l">date range</div></div>
+          </div>
+          <div class="learn-actions">
+            <button type="button" class="btn" id="openProfile">Open my profile on X ↗</button>
+            <button type="button" class="btn ghost danger" id="clearSamples">Clear samples</button>
+          </div>
+        </div>
+        <div class="hint">On your profile, press the floating <b>Learn my voice</b> button. It scrolls your Posts, then your Replies, and saves only things you wrote. Run it again any time – duplicates are skipped.</div>
+        <details class="preview">
+          <summary>Preview learned samples</summary>
+          <div id="samplePreview"></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <div class="card-title">3 · Style notes <span class="muted light">– tell it what to keep doing and what to avoid</span></div>
+        <div class="chips-head">
+          <span class="flabel">Suggested from your samples <span class="muted light">(click to add)</span></span>
+          <button type="button" class="btn ghost small" id="analyse">✨ Analyse with AI</button>
+        </div>
+        <div class="chips" id="chips"><span class="muted">Learn some samples first and suggestions will appear here.</span></div>
+        <div class="chips-head" style="margin-top:14px"><span class="flabel">Common rules</span></div>
+        <div class="chips" id="chipsCommon"></div>
+        <textarea id="styleNotes" rows="6" placeholder="e.g. British spelling. Dry humour. Short sentences. No hashtags. Never use 'folks'. Mention On The Day only when someone asks about hospital appointments."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-title">4 · Extra samples <span class="muted light">– optional</span></div>
+        <textarea id="manualSamples" rows="6" placeholder="Paste posts or replies you've written elsewhere that capture your voice. Separate each with a blank line."></textarea>
+      </div>
+    </section>
+
+    <!-- ================= SUGGESTIONS ================= -->
+    <section class="tab" data-tab="suggestions">
+      <header class="page-head">
+        <h1>Suggestions</h1>
+        <p>How the reply options are generated.</p>
+      </header>
+      <div class="card">
+        <div class="grid2">
+          <div class="field"><span class="flabel">Number of suggestions</span>
+            <div class="seg" id="countSeg"><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4</button><button type="button" data-v="5">5</button></div>
+          </div>
+          <div class="field"><span class="flabel">Max length per reply</span>
+            <div class="seg" id="lenSeg"><button type="button" data-v="140">Punchy · 140</button><button type="button" data-v="240">Normal · 240</button><button type="button" data-v="280">Full · 280</button><button type="button" data-v="1000">Long · 1000</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mix of angles</div>
+        <div class="muted">Each run tries to cover different angles so you're not choosing between three versions of the same thing.</div>
+        <div class="checks" id="angles">
+          <label><input type="checkbox" value="add" /> Add something useful <span class="muted light">– a tip, a fact, a related experience</span></label>
+          <label><input type="checkbox" value="agree" /> Agree &amp; amplify <span class="muted light">– back them up with a bit extra</span></label>
+          <label><input type="checkbox" value="question" /> Ask a question <span class="muted light">– keeps the thread going</span></label>
+          <label><input type="checkbox" value="pushback" /> Gentle push-back <span class="muted light">– a different take, kindly</span></label>
+          <label><input type="checkbox" value="witty" /> Witty / light <span class="muted light">– only if it fits your voice</span></label>
+          <label><input type="checkbox" value="personal" /> Personal story <span class="muted light">– from what your samples reveal</span></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">One-click posting</div>
+        <div class="checks">
+          <label><input type="checkbox" id="oneClick" /> <b>Post immediately when I click Use</b> <span class="muted light">– inserts the reply and presses X's Reply button for you</span></label>
+        </div>
+        <div class="hint warn">With this on there's no review step: whatever you click goes out under your name. Each suggestion still shows a <b>Edit</b> option that only inserts.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Guard rails</div>
+        <div class="checks">
+          <label><input type="checkbox" id="noProducts" /> Never mention my own products unless the post is clearly about that topic</label>
+          <label><input type="checkbox" id="noEmoji" /> Never use emoji, even if my samples do</label>
+          <label><input type="checkbox" id="noHashtags" /> Never use hashtags</label>
+          <label><input type="checkbox" id="useDraft" /> If I've started typing, build on my draft instead of ignoring it</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HELP ================= -->
+    <section class="tab" data-tab="help">
+      <header class="page-head"><h1>How it works</h1></header>
+      <div class="card prose">
+        <p><b>Setup, once.</b> Add a key under AI provider, put your handle under Your voice, save. Then open your profile on X and press <b>Learn my voice</b>. It scrolls your Posts and Replies tabs, keeping only things you wrote. Replies are weighted higher because that's what it's writing.</p>
+        <p><b>Every day.</b> Open a post (or hit reply on one in your feed). Under the reply box press <b>✨ Suggest replies</b>. Pick one with <b>Use</b>, edit if you like, send. Nothing is ever posted automatically.</p>
+        <p><b>Tuning.</b> If the suggestions miss your voice, the fastest fix is a line or two in Style notes – the chips there are generated from your own samples. You can also nudge a single run with the Shorter / Funnier / More direct buttons under the suggestions.</p>
+        <p><b>Privacy.</b> Keys and samples live in this browser's extension storage only. Each suggestion sends the post, a little thread context, your draft and your voice samples to the provider you chose – nowhere else.</p>
+        <p class="muted">X changes its page structure now and then. If the button disappears one day, the extension needs a small update to its selectors.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="savebar">
+    <span id="status"></span>
+    <button type="button" class="btn" id="save">Save changes</button>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>

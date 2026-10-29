@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "X Reply Autopilot",
+  "short_name": "Reply Autopilot",
+  "version": "3.0.0",
+  "description": "Fully automated X reply & voice agent: auto-learns your tone, scans feeds in the background, drafts replies, and schedules/posts them with smart pacing.",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://twitter.com/*",
+    "https://api.anthropic.com/*",
+    "https://api.openai.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.x.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_title": "X Reply Autopilot settings"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": ["content.js", "queue.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

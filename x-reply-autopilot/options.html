@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>X Reply Autopilot – Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <img src="icons/icon48.png" alt="" width="28" height="28" />
+      <div><div class="brand-name">X Reply Autopilot</div><div class="brand-sub">v<span id="ver"></span></div></div>
+    </div>
+    <nav id="nav">
+      <button class="nav-item active" data-tab="provider"><span class="nav-ico">⚡</span> AI provider <span class="nav-badge" id="badge-provider"></span></button>
+      <button class="nav-item" data-tab="autopilot"><span class="nav-ico">🤖</span> Autopilot <span class="nav-badge" id="badge-autopilot"></span></button>
+      <button class="nav-item" data-tab="voice"><span class="nav-ico">🎙</span> Your voice <span class="nav-badge" id="badge-voice"></span></button>
+      <button class="nav-item" data-tab="suggestions"><span class="nav-ico">✨</span> Suggestions</button>
+      <button class="nav-item" data-tab="queue"><span class="nav-ico">📋</span> Queue &amp; Pacing <span class="nav-badge" id="badge-queue"></span></button>
+      <button class="nav-item" data-tab="help"><span class="nav-ico">❔</span> How it works</button>
+    </nav>
+    <div class="side-foot">
+      <div class="readiness" id="readiness"></div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <!-- ================= PROVIDER ================= -->
+    <section class="tab active" data-tab="provider">
+      <header class="page-head">
+        <h1>AI provider</h1>
+        <p>Pick who writes your suggestions and automated replies. Keys stay in this browser and are only sent to the provider you choose.</p>
+      </header>
+
+      <div class="provider-grid" id="providers">
+        <label class="pcard" data-p="claude">
+          <input type="radio" name="provider" value="claude" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">Claude</span><span class="pby">Anthropic</span><span class="pstate" data-state="claude"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="claude" placeholder="sk-ant-…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="claude"></select><button type="button" class="mini refresh" data-refresh="claude" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="claude"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+
+        <label class="pcard" data-p="openai">
+          <input type="radio" name="provider" value="openai" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">ChatGPT</span><span class="pby">OpenAI</span><span class="pstate" data-state="openai"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="openai" placeholder="sk-…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="openai"></select><button type="button" class="mini refresh" data-refresh="openai" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="openai"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+
+        <label class="pcard" data-p="gemini">
+          <input type="radio" name="provider" value="gemini" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">Gemini</span><span class="pby">Google</span><span class="pstate" data-state="gemini"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="gemini" placeholder="AIza…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="gemini"></select><button type="button" class="mini refresh" data-refresh="gemini" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="gemini"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+
+        <label class="pcard" data-p="grok">
+          <input type="radio" name="provider" value="grok" />
+          <div class="pcard-head"><span class="pdot"></span><span class="pname">Grok</span><span class="pby">xAI</span><span class="pstate" data-state="grok"></span></div>
+          <div class="pfields">
+            <div class="field"><span class="flabel">API key</span>
+              <div class="keywrap"><input type="password" data-key="grok" placeholder="xai-…" autocomplete="off" /><button type="button" class="mini toggle">show</button></div>
+            </div>
+            <div class="field"><span class="flabel">Model</span>
+              <div class="modelwrap"><select data-model="grok"></select><button type="button" class="mini refresh" data-refresh="grok" title="Reload models">↻</button></div>
+              <div class="modelhint" data-hint="grok"></div>
+            </div>
+          </div>
+          <a class="plink" href="https://console.x.ai/" target="_blank" rel="noopener">Get a key ↗</a>
+        </label>
+      </div>
+
+      <div class="card test-card">
+        <div>
+          <div class="card-title">Test the connection</div>
+          <div class="muted">Saves your settings, then asks the selected model for sample replies.</div>
+        </div>
+        <button type="button" class="btn ghost" id="test">Run test</button>
+      </div>
+      <div id="testResult" class="test-result" hidden></div>
+    </section>
+
+    <!-- ================= AUTOPILOT ================= -->
+    <section class="tab" data-tab="autopilot">
+      <header class="page-head">
+        <h1>Full Autopilot</h1>
+        <p>Hands-free background automation: periodically opens your X feeds, scans posts, drafts replies in your voice, and schedules them within your daily cap and active hours.</p>
+      </header>
+
+      <div class="card">
+        <div class="learn-row">
+          <div>
+            <div class="card-title" style="margin-bottom:4px">1 · Autopilot control &amp; live status</div>
+            <div class="muted" id="autopilotStateText">Ready</div>
+          </div>
+          <div class="learn-actions">
+            <button type="button" class="btn" id="runAutopilotNow">⚡ Run Autopilot scan now</button>
+            <button type="button" class="btn ghost" id="runAutoLearnNow">🎙 Auto-learn voice now</button>
+          </div>
+        </div>
+        <div class="stat-grid" style="margin: 12px 0">
+          <div class="stat"><div class="stat-n" id="ap-today">0 / 25</div><div class="stat-l">today's quota</div></div>
+          <div class="stat"><div class="stat-n" id="ap-scheduled">0</div><div class="stat-l">scheduled</div></div>
+          <div class="stat"><div class="stat-n" id="ap-posted">0</div><div class="stat-l">posted today</div></div>
+          <div class="stat"><div class="stat-n" id="ap-last">–</div><div class="stat-l">last scan</div></div>
+        </div>
+        <div class="checks">
+          <label><input type="checkbox" id="autopilotEnabled" /> <b>Enable full background Autopilot</b> <span class="muted light">– automatically scan feeds, generate replies, and schedule/post them on a timer</span></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">2 · Feed sources &amp; scan schedule</div>
+        <div class="grid2">
+          <div class="field">
+            <span class="flabel">Scan interval</span>
+            <select id="autopilotIntervalMinutes">
+              <option value="15">Every 15 minutes</option>
+              <option value="30">Every 30 minutes</option>
+              <option value="60">Every hour</option>
+              <option value="120">Every 2 hours</option>
+              <option value="240">Every 4 hours</option>
+            </select>
+            <div class="hint">How often Autopilot opens a feed in a background tab to find new posts.</div>
+          </div>
+          <div class="field">
+            <span class="flabel">Max replies to schedule per scan</span>
+            <select id="autopilotPerRun">
+              <option value="2">2 replies</option>
+              <option value="3">3 replies</option>
+              <option value="5">5 replies</option>
+              <option value="8">8 replies</option>
+              <option value="10">10 replies</option>
+              <option value="15">15 replies</option>
+            </select>
+            <div class="hint">Replies are spread randomly across your spread window.</div>
+          </div>
+          <div class="field">
+            <span class="flabel">Scroll depth per scan</span>
+            <select id="autopilotScrolls">
+              <option value="1">1 scroll (top of feed)</option>
+              <option value="2">2 scrolls</option>
+              <option value="3">3 scrolls (recommended)</option>
+              <option value="5">5 scrolls</option>
+              <option value="8">8 scrolls (deep scan)</option>
+            </select>
+            <div class="hint">How far down the feed Autopilot scrolls to gather fresh candidate posts.</div>
+          </div>
+          <div class="field">
+            <span class="flabel">Minimum gap between replies</span>
+            <select id="autopilotMinGapSeconds">
+              <option value="60">At least 60 seconds</option>
+              <option value="90">At least 90 seconds</option>
+              <option value="120">At least 2 minutes (recommended)</option>
+              <option value="180">At least 3 minutes</option>
+              <option value="300">At least 5 minutes</option>
+            </select>
+            <div class="hint">Enforces natural spacing between any two scheduled posts.</div>
+          </div>
+        </div>
+        <div class="field" style="margin-top:14px">
+          <span class="flabel">Feeds, lists, searches, or profiles to scan <span class="muted light">(one per line – rotated on each scan)</span></span>
+          <textarea id="autopilotSources" rows="4" placeholder="https://x.com/home&#10;https://x.com/i/lists/123456789&#10;search: indie hackers&#10;@levelsio"></textarea>
+          <div class="hint">Supports full X URLs (<code>https://x.com/home</code>, lists, searches), <code>@handles</code>, or <code>search: your topic</code>.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">3 · Smart pacing, daily cap &amp; active hours</div>
+        <div class="grid2">
+          <div class="field">
+            <span class="flabel">Daily reply cap</span>
+            <select id="autopilotDailyCap">
+              <option value="10">10 replies / day</option>
+              <option value="15">15 replies / day</option>
+              <option value="25">25 replies / day (recommended)</option>
+              <option value="40">40 replies / day</option>
+              <option value="60">60 replies / day</option>
+              <option value="100">100 replies / day</option>
+            </select>
+            <div class="hint">Autopilot pauses for the day once this many replies are posted or scheduled.</div>
+          </div>
+          <div class="field">
+            <span class="flabel">Active hours window (local time)</span>
+            <div class="modelwrap">
+              <select id="autopilotStartHour"></select>
+              <span class="muted" style="align-self:center">to</span>
+              <select id="autopilotEndHour"></select>
+            </div>
+            <div class="hint">Replies outside this window are automatically held until the next active morning.</div>
+          </div>
+        </div>
+        <div class="checks" style="margin-top:12px">
+          <label><input type="checkbox" id="autopilotRespectHours" /> Only scan feeds and post replies during my active hours window</label>
+          <label><input type="checkbox" id="autopilotAutoApprove" /> Automatically mark drafted replies as approved when scanning in the Queue drawer</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">4 · Automated voice learning &amp; AI style tuning</div>
+        <div class="grid2">
+          <div class="field">
+            <span class="flabel">Refresh voice samples every</span>
+            <select id="autoLearnIntervalDays">
+              <option value="1">Every day</option>
+              <option value="3">Every 3 days</option>
+              <option value="7">Every 7 days (recommended)</option>
+              <option value="14">Every 14 days</option>
+              <option value="30">Every 30 days</option>
+            </select>
+            <div class="hint">Periodically opens your profile in the background to learn your newest posts &amp; replies.</div>
+          </div>
+        </div>
+        <div class="checks" style="margin-top:12px">
+          <label><input type="checkbox" id="autoDetectHandle" /> Automatically detect my X <code>@handle</code> when I visit X</label>
+          <label><input type="checkbox" id="autoLearnEnabled" /> Automatically learn my voice on initial setup and refresh on the schedule above</label>
+          <label><input type="checkbox" id="autoAnalyzeVoice" /> Automatically run AI style analysis after learning my voice</label>
+          <label><input type="checkbox" id="autoApplyTraits" /> Automatically apply discovered style rules into my Style notes</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VOICE ================= -->
+    <section class="tab" data-tab="voice">
+      <header class="page-head">
+        <h1>Your voice</h1>
+        <p>The more of your real posts and replies it has seen, the more the suggestions sound like you.</p>
+      </header>
+
+      <div class="card">
+        <div class="card-title">1 · Your account</div>
+        <div class="grid2">
+          <div class="field">
+            <span class="flabel">X handle</span>
+            <div class="prefixwrap"><span class="prefix">@</span><input type="text" id="handle" placeholder="yourhandle (or auto-detected on X)" autocomplete="off" /></div>
+            <div class="hint">Auto-detected when you open X, or enter it here manually.</div>
+          </div>
+          <div class="field">
+            <span class="flabel">How far back to learn</span>
+            <select id="lookback">
+              <option value="all">Everything</option>
+              <option value="3">Last 3 months</option>
+              <option value="6">Last 6 months</option>
+              <option value="9">Last 9 months</option>
+              <option value="12">Last 12 months</option>
+              <option value="date">Stop at a date…</option>
+            </select>
+            <input type="date" id="lookbackDate" hidden />
+            <div class="hint">Learning stops once it reaches posts older than this.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">2 · Learn from X</div>
+        <div class="learn-row">
+          <div class="stat-grid" id="stats">
+            <div class="stat"><div class="stat-n" id="st-total">0</div><div class="stat-l">samples</div></div>
+            <div class="stat"><div class="stat-n" id="st-replies">0</div><div class="stat-l">replies</div></div>
+            <div class="stat"><div class="stat-n" id="st-posts">0</div><div class="stat-l">posts</div></div>
+            <div class="stat"><div class="stat-n" id="st-range">–</div><div class="stat-l">date range</div></div>
+          </div>
+          <div class="learn-actions">
+            <button type="button" class="btn" id="autoLearnBtn">🤖 Auto-learn &amp; analyse now</button>
+            <button type="button" class="btn ghost" id="openProfile">Open profile ↗</button>
+            <button type="button" class="btn ghost danger" id="clearSamples">Clear</button>
+          </div>
+        </div>
+        <div class="hint"><b>Auto-learn &amp; analyse now</b> opens your profile in a background tab, scrapes your Posts and Replies, runs AI voice analysis, and applies your style rules automatically.</div>
+        <details class="preview">
+          <summary>Preview learned samples</summary>
+          <div id="samplePreview"></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <div class="card-title">3 · Style notes <span class="muted light">– tell it what to keep doing and what to avoid</span></div>
+        <div class="chips-head">
+          <span class="flabel">Suggested from your samples <span class="muted light">(auto-applied or click to toggle)</span></span>
+          <button type="button" class="btn ghost small" id="analyse">✨ Analyse with AI</button>
+        </div>
+        <div class="chips" id="chips"><span class="muted">Learn some samples first and suggestions will appear here.</span></div>
+        <div class="chips-head" style="margin-top:14px"><span class="flabel">Common rules</span></div>
+        <div class="chips" id="chipsCommon"></div>
+        <textarea id="styleNotes" rows="6" placeholder="e.g. British spelling. Dry humour. Short sentences. No hashtags. Never use 'folks'. Mention On The Day only when someone asks about hospital appointments."></textarea>
+      </div>
+
+      <div class="card">
+        <div class="card-title">4 · Extra samples <span class="muted light">– optional</span></div>
+        <textarea id="manualSamples" rows="6" placeholder="Paste posts or replies you've written elsewhere that capture your voice. Separate each with a blank line."></textarea>
+      </div>
+    </section>
+
+    <!-- ================= SUGGESTIONS ================= -->
+    <section class="tab" data-tab="suggestions">
+      <header class="page-head">
+        <h1>Suggestions</h1>
+        <p>How the reply options are generated.</p>
+      </header>
+      <div class="card">
+        <div class="grid2">
+          <div class="field"><span class="flabel">Number of suggestions</span>
+            <div class="seg" id="countSeg"><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4</button><button type="button" data-v="5">5</button></div>
+          </div>
+          <div class="field"><span class="flabel">Max length per reply</span>
+            <div class="seg" id="lenSeg"><button type="button" data-v="140">Punchy · 140</button><button type="button" data-v="240">Normal · 240</button><button type="button" data-v="280">Full · 280</button><button type="button" data-v="1000">Long · 1000</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mix of angles</div>
+        <div class="muted">Each run tries to cover different angles so you're not choosing between three versions of the same thing.</div>
+        <div class="checks" id="angles">
+          <label><input type="checkbox" value="add" /> Add something useful <span class="muted light">– a tip, a fact, a related experience</span></label>
+          <label><input type="checkbox" value="agree" /> Agree &amp; amplify <span class="muted light">– back them up with a bit extra</span></label>
+          <label><input type="checkbox" value="question" /> Ask a question <span class="muted light">– keeps the thread going</span></label>
+          <label><input type="checkbox" value="pushback" /> Gentle push-back <span class="muted light">– a different take, kindly</span></label>
+          <label><input type="checkbox" value="witty" /> Witty / light <span class="muted light">– only if it fits your voice</span></label>
+          <label><input type="checkbox" value="personal" /> Personal story <span class="muted light">– from what your samples reveal</span></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">In-page automation &amp; one-click posting</div>
+        <div class="checks">
+          <label><input type="checkbox" id="autoSuggest" /> <b>Automatically suggest replies when I open a post or reply box</b></label>
+          <label><input type="checkbox" id="oneClick" /> <b>Post immediately when I click Use</b> <span class="muted light">– inserts the reply and presses X's Reply button for you</span></label>
+        </div>
+        <div class="hint warn">With one-click posting on there's no review step: whatever you click goes out under your name. Each suggestion still shows an <b>Edit</b> option that only inserts.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Guard rails</div>
+        <div class="checks">
+          <label><input type="checkbox" id="noProducts" /> Never mention my own products unless the post is clearly about that topic</label>
+          <label><input type="checkbox" id="noEmoji" /> Never use emoji, even if my samples do</label>
+          <label><input type="checkbox" id="noHashtags" /> Never use hashtags</label>
+          <label><input type="checkbox" id="useDraft" /> If I've started typing, build on my draft instead of ignoring it</label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= QUEUE ================= -->
+    <section class="tab" data-tab="queue">
+      <header class="page-head">
+        <h1>Queue &amp; Pacing</h1>
+        <p>Filters and timing for both background Autopilot and the on-page Queue drawer.</p>
+      </header>
+      <div class="card">
+        <div class="card-title">How it works</div>
+        <div class="prose">
+          <p><b>Full Autopilot</b> runs automatically in the background on your schedule, scanning your configured feeds, drafting replies, and scheduling them across your spread window.</p>
+          <p>You can also open the <b>🤖 Autopilot &amp; Queue</b> drawer on any X feed page and press <b>⚡ Auto-Scan &amp; Schedule</b> for instant one-click batch scheduling, or <b>Scan for review</b> if you want to edit specific drafts first.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="grid2">
+          <div class="field"><span class="flabel">Posts per manual scan</span>
+            <div class="seg" id="batchSeg"><button type="button" data-v="5">5</button><button type="button" data-v="10">10</button><button type="button" data-v="15">15</button><button type="button" data-v="25">25</button></div>
+            <div class="hint">How many drafts a manual drawer scan produces at most.</div>
+          </div>
+          <div class="field"><span class="flabel">Default spread window</span>
+            <select id="queueSpread">
+              <option value="15">Next 15 minutes</option>
+              <option value="30">Next 30 minutes</option>
+              <option value="60">Next hour</option>
+              <option value="120">Next 2 hours</option>
+              <option value="240">Next 4 hours</option>
+              <option value="480">Next 8 hours</option>
+            </select>
+            <div class="hint">Scheduled replies get random times inside this window, respecting your minimum gap and active hours.</div>
+          </div>
+          <div class="field"><span class="flabel">Skip posts shorter than</span>
+            <select id="queueMinChars">
+              <option value="0">Don't skip</option>
+              <option value="20">20 characters</option>
+              <option value="40">40 characters</option>
+              <option value="80">80 characters</option>
+            </select>
+            <div class="hint">One-word posts rarely deserve a reply.</div>
+          </div>
+          <div class="field"><span class="flabel">Skip posts older than</span>
+            <select id="queueMaxAgeHours">
+              <option value="6">6 hours</option>
+              <option value="24">24 hours</option>
+              <option value="72">3 days</option>
+              <option value="168">A week</option>
+            </select>
+            <div class="hint">Avoids replying to stale posts.</div>
+          </div>
+        </div>
+        <div class="checks" style="margin-top:14px">
+          <label><input type="checkbox" id="queueCloseTabs" /> Close background tabs automatically after scanning, learning, or posting <span class="muted light">– untick to inspect background tabs</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HELP ================= -->
+    <section class="tab" data-tab="help">
+      <header class="page-head"><h1>How it works</h1></header>
+      <div class="card prose">
+        <p><b>1. Zero-touch setup.</b> Add an API key under <b>AI provider</b> and save. When you open X (or enter your handle under <b>Your voice</b>), the extension automatically detects your handle, opens your profile in the background to learn your Posts &amp; Replies, runs AI voice analysis, and applies your personal style rules.</p>
+        <p><b>2. Full background Autopilot.</b> With Autopilot enabled, the extension periodically opens your Home feed (and any custom lists, search queries, or profiles you've added), scrolls to find fresh posts, generates replies in your voice, and schedules them across randomized times within your active hours and daily cap.</p>
+        <p><b>3. Smart pacing.</b> Every scheduled reply opens briefly in a background tab at its due time, pauses naturally, inserts the reply, clicks Reply, verifies X's confirmation, and closes the tab.</p>
+        <p><b>4. On-page controls.</b> On any X page you can open the <b>🤖 Autopilot &amp; Queue</b> drawer to pause/resume Autopilot, trigger an immediate scan, or review upcoming scheduled replies. When viewing an individual post, reply suggestions appear automatically under the reply box.</p>
+        <p><b>Privacy.</b> Keys and samples live in this browser's extension storage only. Nothing is sent anywhere except directly to your chosen AI provider.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="savebar">
+    <span id="status"></span>
+    <button type="button" class="btn" id="save">Save changes</button>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>
